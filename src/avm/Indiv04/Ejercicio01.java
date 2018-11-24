@@ -7,7 +7,7 @@ package avm.Indiv04;
 
 /**
  *
- * @author Usuario
+ * @author yo
  */
 public class Ejercicio01 {
     public static void main(String[] args){
