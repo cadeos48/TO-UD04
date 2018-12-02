@@ -27,28 +27,14 @@ public class Usuario {
         this.edad = edad;
         }
     
-    public void introducirCliente(Usuario[] usu){
-       String posibleDni;
-       boolean comprobacion;
-        
-       System.out.println("Introduzca el nombre del usuario");
-       this.nombre = teclado.next();
-       System.out.println("Introduzca los apellidos del usuario");
-       this.apellidos = teclado.next();
-       //Comprobación de que el DNI introducido
-       do {        
-           comprobacion = false;
-           System.out.println("Introduzca el DNI del usuario: ");
-           posibleDni = teclado.next();
-           for(int cont = 0; cont <usu.length; cont++){
-               if (usu[cont].getDni().equals(posibleDni)) comprobacion=true;
-           }
-           if (comprobacion) System.out.println("DNI no valido");
-           else this.dni = posibleDni;
-       }   
-       while (comprobacion == true);
-       System.out.println("Introduzca la edad del usuario: ");
-       this.edad = teclado.nextInt();
+    public boolean comprobarDNI(Usuario[] usu, String posibDNI){
+       boolean comprobacion = false;
+       for(int cont = 0; cont <usu.length; cont++){
+           if (usu[cont].getDni().equals(posibDNI)) comprobacion=true;
+           else comprobacion = false;       
+       }
+       if (comprobacion) System.out.println("DNI perteneciente a otro cliente");
+       return comprobacion;
     }
 
     public String getNombre() {
@@ -87,6 +73,37 @@ public class Usuario {
     return ("Nombre: " +this.nombre +"  Apellidos: " +this.apellidos +"  DNI: " +this.dni +"  Edad: " +this.edad);
     }
     
+     public static char leerChar(){
+        char dimeChar;     
+        Scanner teclado = new Scanner(System.in);
+        dimeChar = teclado.next().charAt(0);
+        return dimeChar;
+     }
+     
+    public static int leerEntero() {
+        int entero = 0;
+        boolean comprobacion = false;
+        Scanner teclado = new Scanner(System.in);
+        do {
+            try {
+                entero = teclado.nextInt();
+                comprobacion = true;
+                } catch (Exception e) {
+                    System.out.println("Dato erróneo");
+                    teclado.nextLine();
+                }
+        }
+        while (comprobacion == false);
+        return entero;
+    }
+    
+        public static String leerCadena(){
+        String dimeCadena;     
+        Scanner teclado = new Scanner(System.in);
+        dimeCadena = teclado.next();
+        return dimeCadena;
+     }
+    
     //Método que comprueba si los registros del array están todos llenos o hay alguno
     //sin completar, devuelve -1 si el array está lleno, si no está lleno devuelve
     //el número del campo que está vacio
@@ -98,30 +115,5 @@ public class Usuario {
         return numRegArray;
     }
     
-    //Método que comprueba en el array recibido por parámetro, si hay coincidencia entre un
-    // cadena de carácteres recibida por parámetro y el valor contenido en el atributo
-    //Dni de cada uno de los objetos contenidos en el array. Si hay coincidencia devuelve true
-    /*public static boolean ConsultaArray(Usuario[] usu, String DNI){
-        boolean comprobacion = false;
-        for(int cont = 0; cont <usu.length; cont++){
-            if (usu[cont].getDni().equals(DNI)) comprobacion=true;           
-        }
-        return comprobacion;
-    }*/
-    
-    /*public String validarDNI(String posibleDNI, boolean comprobacion){
-        boolean salir = false;        
-        do {
-            System.out.println("Introduzca el DNI del usuario: ");
-            posibleDNI = teclado.next();
-            if (comprobacion)
-                System.out.println("DNI inválido. Vuelva a introducirlo");
-            else salir = true;
-        }
-        while (salir == false);
-        return posibleDNI;
-        
-    }*/
-           
 }
        

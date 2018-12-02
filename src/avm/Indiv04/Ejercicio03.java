@@ -15,9 +15,10 @@ import java.util.Scanner;
 
 public class Ejercicio03 {
     public static void main(String[] args){
-        Usuario[] clientes = new Usuario[10];
+        Usuario[] clientes = new Usuario[10];//Array que va a contener 10 objetos de tipo Usuario
         Scanner teclado = new Scanner(System.in);
-        Usuario usuario = new Usuario("", "" , "", 0);    
+        Usuario usuario = new Usuario("", "" , "", 0);//Declaración e inicialización por constructor
+        //de un objeto tipo Usuario
         boolean exit;
         char respuesta;         
         int regVacio;
@@ -25,32 +26,44 @@ public class Ejercicio03 {
         //Inicializa el array con valores predeterminados. Asinga como valor 
         //predeterminado al atriburo nombre el valor $
         for(int cont = 0; cont < clientes.length; cont++){
-            clientes[cont] = new Usuario("$","$","$",0);
+            clientes[cont] = new Usuario("$","","",0);
              }
         
         do {
             exit = false;
             System.out.println("Quiere introducir datos de un cliente S/N");        
-            respuesta = teclado.next().charAt(0);
-            if ( respuesta == 'S' || respuesta =='s'){
+            respuesta = Usuario.leerChar();
+            if (respuesta == 'S' || respuesta == 's'){
                 regVacio = Usuario.ConsultaArray(clientes);
                 if (regVacio == -1) {
-                    System.out.println ("Array lleno, no se puede introducir más datos");
-                    respuesta = 'n';
+                    System.out.println ("Array lleno, no se puede introducir más datos");              
                     exit = true;
                 }
                 else {
-                    usuario.introducirCliente(clientes);
+                    boolean comprobacion;
+                    System.out.println("Introduzca el nombre del usuario");
+                    usuario.setNombre(Usuario.leerCadena());
+                    System.out.println("Introduzca los apellidos del usuario");
+                    usuario.setApellidos(Usuario.leerCadena());
+                    do {
+                        System.out.println("Introduzca el DNI del usuario: ");
+                        String posibleDni = Usuario.leerCadena();
+                        comprobacion = usuario.comprobarDNI(clientes, posibleDni);
+                        usuario.setDni(posibleDni);
+                    }
+                    while(comprobacion == true);
+                    System.out.println("Introduzca la edad del usuario");
+                    usuario.setEdad(Usuario.leerEntero());
                     clientes[regVacio] = new Usuario(usuario.getNombre(),usuario.getApellidos(),usuario.getDni(),usuario.getEdad());
                 }
             }
-            else exit = true;
+           if(respuesta =='N' || respuesta =='n') exit = true;
+                   
         }
-        while(respuesta =='S' || respuesta =='s' || respuesta =='N' && respuesta =='n' && exit == false);    
-            
-                 
+        while(exit == false);    
+                       
        for(int cont = 0; cont < clientes.length; cont++){
-            System.out.println(clientes[cont].toString());
+            System.out.println("Cliente "+cont +" " +clientes[cont].toString());
        }            
     }
 }
