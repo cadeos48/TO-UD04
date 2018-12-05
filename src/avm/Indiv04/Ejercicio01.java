@@ -12,6 +12,7 @@ package avm.Indiv04;
 public class Ejercicio01 {
     public static void main(String[] args){
         //declaración e inicialización de variables
+        System.out.println("Introduce la cantidad de números que quiere almacenar en el array");
         int dimension = ArchivoDeClases.leerEntero();
         int [] arrayAleatorio = new int[dimension];
         

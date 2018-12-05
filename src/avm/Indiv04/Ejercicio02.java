@@ -12,6 +12,7 @@ package avm.Indiv04;
 public class Ejercicio02 {
      public static void main(String[] args){
         //declaración e inicialización de variables
+        System.out.println("Introduce la cantidad de números que quiere almacenar en el array");
         int dimension = ArchivoDeClases.leerEntero();
         int [] arrayAleatorio = new int[dimension];
         
@@ -27,19 +28,8 @@ public class Ejercicio02 {
             } else {
                 contImpares++;
             }
-        }
-                
-        /* contPares = contPares++ no funciona, da siempre cero
-        for(int cont = 0; cont < arrayAleatorio.length; cont++){
-            arrayAleatorio[cont] = (int) (Math.random()*100);
-            if (arrayAleatorio[cont]%2 == 0){
-                contPares = contPares++;
-            } else {
-                contImpares = contImpares++;
-            }
-        }*/
-
-        
+        }              
+            
         //Salida de datos
         System.out.println("El total de números pares es: " +contPares);
         System.out.println("El total de números impares es: " +contImpares);

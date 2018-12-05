@@ -22,8 +22,7 @@ public class ArchivoDeClases {
         boolean validacion = false;
         
         do{
-           try {
-               System.out.println("Introduce un número");
+           try {              
                numEnt = teclado.nextInt();
                validacion = true;
            }

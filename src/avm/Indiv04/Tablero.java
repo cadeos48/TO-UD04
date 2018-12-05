@@ -110,7 +110,9 @@ public class Tablero {
         return entero;
     }
 
-    public void logicaCPU() {
+      //He intentado mejorar la lógica de la CPU, ya que con el método Math.random era muy
+      //fácil ganarle. Seguiré prácticando en las navidades para intentar mejorarla
+      public void logicaCPU() {
         int fila = 0;
         int columna = 0;
         if (tablero[0][0] == "O" && tablero[0][1] == "O" && tablero[0][2] == " "
